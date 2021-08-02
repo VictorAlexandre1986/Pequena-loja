@@ -1,0 +1,45 @@
+    {% extends 'main/base.html'%}
+
+    {% block title %}
+        Loja - items
+    {% endblock %}
+
+    {% block pageheader%}
+
+    {% endblock %}
+
+    {% block content %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                {% include 'main/include/i_modal.html' %}
+                <tr>
+                    <th scope="row">{{ item.pk }}</th>
+                    <td>{{ item.name }}</td>
+                    <td><img style="width:60px" src="{{ item.image_url }}" alt=image></td>
+                    <td>{{ item.price}}</td>
+                    <td>{{ item.description }}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary"
+                        data-bs-toggle="modal" data-bs-target="#Modal-MoreInfo">Detalhes produto</button>
+                        <button type="button" class="btn btn-outline-success"
+                        data-bs-toggle="modal" data-bs-target="#Modal-PurchaseConfirm">Comprar produto</button>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endblock %}
+
