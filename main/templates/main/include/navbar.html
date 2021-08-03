@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-success">
     <a class="navbar-brand" href="{% url 'home' %}">Loja Online - Shop</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
@@ -9,7 +9,23 @@
                 <a class="nav-link" href="{% url 'items' %}">Produtos</a>
             </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-flex ">
+            {% if user.is_authenticated %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ola, {{ user.username }} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Cadastrar</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 

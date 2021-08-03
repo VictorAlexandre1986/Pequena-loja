@@ -16,7 +16,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Description</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
@@ -28,12 +27,11 @@
                     <td>{{ item.name }}</td>
                     <td><img style="width:60px" src="{{ item.image_url }}" alt=image></td>
                     <td>{{ item.price}}</td>
-                    <td>{{ item.description }}</td>
                     <td>
                         <button type="button" class="btn btn-outline-primary"
-                        data-bs-toggle="modal" data-bs-target="#Modal-MoreInfo">Detalhes produto</button>
+                        data-bs-toggle="modal" data-bs-target="#Modal-MoreInfo{{ item.pk }}">Detalhes produto</button>
                         <button type="button" class="btn btn-outline-success"
-                        data-bs-toggle="modal" data-bs-target="#Modal-PurchaseConfirm">Comprar produto</button>
+                        data-bs-toggle="modal" data-bs-target="#Modal-PurchaseConfirm{{ item.pk }}">Comprar produto</button>
                     </td>
 
                 </tr>

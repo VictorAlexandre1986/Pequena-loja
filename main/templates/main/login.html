@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title%}
+    Login
+{% endblock %}
+
+{% block content %}
+    <body class="">
+        <div style="width:500px" class="m-auto mt-5">
+            <form class="form-signin" method="POST">
+                {% csrf_token%}
+                <h1 class="h3 mb-3 font-weight-normal text-center">Increva-se</h1>
+                <br>
+                <label for="inputUsername" class="sr-only">Usuário : </label>
+                <input type="text" id="inputUsername" class="form-control" placeholder="Usuario" name="username" required>
+                <br>
+                <label for="inputPassword" class="sr-only">Senha : </label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="password" required>
+                <br>
+                <div class="checkbox mb-3 text-center">
+                    <h6>Não possui conta ?</h6>
+                    <a class="btn btn-sm btn-secondary" href="{% url 'register' %}">Cadastrar</a>
+                </div>
+                <div class="text-center"  >
+                    <button style="width:400px" class="btn btn-lg btn-outline-primary btn-block " type="submit">Logar</button>
+                </div>
+            </form>
+        </div>
+    </body> 
+{% endblock %}
