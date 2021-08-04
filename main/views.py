@@ -2,14 +2,24 @@ from django.shortcuts import render,redirect
 from main.models import Item
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
 def homepage(request):
     return render(request, template_name='main/home.html')
 
 def itemspage(request):
-    items = Item.objects.all()
-    return render(request, template_name='main/items.html', context={'items':items})
+    if request.method == 'GET':
+        items = Item.objects.filter(donoownew=None)
+        return render(request, template_name='main/items.html', context={'items':items})
+    if request.method == 'POST':
+        purchased_item = request.POST.get('purchased-item')
+        if purchased_item:
+            purchased_item_object = Item.objects.get(name=purchased_item)
+            purchased_item_object.donoownew = request.user
+            purchased_item_object.save()
+            messages.success(request, f'Obrigado\' O produto  {purchased_item_object.name} foi comprado com sucesso por {purchased_item_object.price}')
+        return redirect('items')
 
 
 def loginpage(request):
